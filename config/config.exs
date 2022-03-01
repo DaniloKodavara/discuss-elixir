@@ -64,13 +64,11 @@ config :phoenix, :json_library, Jason
 import_config "#{config_env()}.exs"
 
 # Uberauth
-config :ueberauth,
-       Ueberauth,
+config :ueberauth, Ueberauth,
        providers: [
-         github: {Ueberauth.Strategy.Github, []}
+         github: {Ueberauth.Strategy.Github, [default_scope: "user:email"]}
        ]
 
-config :uberauth,
-       Ueberauth.Strategy.Github.OAuth,
+config :ueberauth, Ueberauth.Strategy.Github.OAuth,
        client_id: "653afe0dd015c3c0559c",
        client_secret: ""

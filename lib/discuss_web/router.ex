@@ -25,7 +25,6 @@ defmodule DiscussWeb.Router do
     #delete "/topic/:id/", TopicController, :delete
 
     resources "/", TopicController
-
   end
 
   scope "/auth", DiscussWeb do

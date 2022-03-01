@@ -1,6 +1,7 @@
 defmodule DiscussWeb.AuthController do
   use DiscussWeb, :controller
-  plug Uberauth
+
+  plug Ueberauth
 
   def callback(conn, params) do
     IO.puts "+++++++"
