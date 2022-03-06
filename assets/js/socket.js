@@ -1,16 +1,25 @@
 import {Socket} from 'phoenix';
 
-let socket = new Socket('/socket', {params: {token: window.userToken}});
+let socket = new Socket('/socket', { params: { token: window.userToken } });
 
 socket.connect();
 
-let channel = socket.channel("comments:1", {})
-channel.join()
-    .receive("ok", resp => {
-        console.log("Joined succefully", resp)
-    })
-    .receive("error", resp => {
-        console.log("Unable to join", resp)
-    })
+const createChannelSocket = (topicId) => {
+    let channel = socket.channel(`comments:${topicId}`, {});
 
-export default socket
+    channel.join()
+        .receive("ok", resp => {
+            console.log("Joined succefully", resp)
+        })
+        .receive("error", resp => {
+            console.log("Unable to join", resp)
+        });
+
+    document.querySelector('button').addEventListener('click', () =>{
+        const content = document.querySelector('textarea').value;
+
+        channel.push('comment:add', { content: content })
+    })
+};
+
+window.createChannelSocket = createChannelSocket;
