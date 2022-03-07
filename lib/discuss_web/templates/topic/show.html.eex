@@ -10,6 +10,6 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        window.createChannelSocket(<%= @topic.id %>)
+        window.createSocket(<%= @topic.id %>)
     });
 </script>
